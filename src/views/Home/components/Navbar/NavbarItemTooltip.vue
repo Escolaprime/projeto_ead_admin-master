@@ -1,0 +1,29 @@
+<template>
+  <div
+    class="
+      absolute
+      z-10
+      left-10
+      group-hover:left-20
+      top-3
+      w-24
+      p-2
+      h-auto
+      bg-secondary
+      shadow-lg
+      transition-all
+      delay-100
+      cursor-default
+      pointer-events-none
+      ease-out
+      duration-200
+      opacity-0
+      group-hover:opacity-100
+      rounded-xl
+    "
+  >
+    <span class="font-medium text-sm text-primary">
+      <slot />
+    </span>
+  </div>
+</template>

@@ -1,0 +1,14 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+
+input, textarea, button {
+    @apply appearance-none focus:outline-none
+}
+
+select {
+    @apply focus:outline-none
+}
