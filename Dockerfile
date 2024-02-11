@@ -1,6 +1,7 @@
 # Use the official Node.js 16.16 image as base
 FROM node:16.16
 
+RUN npm install -g vue-cli
 # Set the working directory in the container
 WORKDIR /app
 
