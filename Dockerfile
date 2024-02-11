@@ -14,8 +14,12 @@ RUN npm install
 # Copy the rest of the application code to the working directory
 COPY . .
 
-# Expose the port the app runs on
-EXPOSE 8080
+RUN npm run build
 
-# Command to run the application
-CMD ["npm", "run", "serve"]
+FROM nginx:stable-alpine as production-stage
+
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+
+EXPOSE 3001
+
+CMD ["nginx", "-g", "daemon off;"]
