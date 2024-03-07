@@ -1,5 +1,5 @@
 <template>
-  <section class="home flex-1 flex flex-row bg-gray-100 overflow-hidden">
+  <section class="home flex-1 flex flex-row bg-gray-100 overflow-scroll">
     <navbar>
       <navbar-item to="dashboard" label="Relatorios">
         <ph-chart-pie-slice size="32" weight="duotone" />

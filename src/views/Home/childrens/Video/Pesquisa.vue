@@ -191,7 +191,7 @@
 
               <div>
                 <h2 class="text-sm font-semibold uppercase">
-                  {{ video.etapa_titulo }}
+                  {{ video.etapa_titulo }} 
                 </h2>
                 <p class="text-sm font-medium text-gray-900">Etapa</p>
               </div>
@@ -503,8 +503,8 @@
 
 <script>
 import axios from "@/http/axios";
-import { mapActions, mapGetters } from "vuex";
 import { check_permission } from "@/permissoes";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Pesquisa",
   data() {
@@ -518,6 +518,7 @@ export default {
       index_item: -1,
       psq_videos: { semana_id: 0, dia_id: 0, txt_pesquisa: '', professor_id: '', etapa_id: '', ativo: true },
       PSQ_VIDEO_ATIVO: false,
+      link: ''
     };
   },
   created() {
@@ -672,10 +673,21 @@ export default {
     },
 
     selecionar_video(item, index) {
-      if (!this.$parent.check.editar) return;
+      if (!this.$parent.check.editar) return ;
       this.video_selecionado = Object.assign({ progress: 0 }, item);
       this.index_item = index;
       this.PSQ_VIDEO_ATIVO = false;
+
+      axios.get(`/admin/streaming/${new Date().getTime()}`, {
+        params: {
+          hash: item.hash_video_id
+        },
+        headers: { Range: "bytes=0-" },
+      }).then((response) => {
+        const { link} = response.data
+        this.$refs.videoplayer.src = link  
+      })
+  
     },
     editar_video() {
       axios
